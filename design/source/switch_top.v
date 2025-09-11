@@ -23,7 +23,7 @@ module switch_top # (
   output [(NUM_OF_PORTS*WORD_WIDTH)-1:0] port_out,
   output [NUM_OF_PORTS-1:0] port_ready,
   output [WORD_WIDTH-1:0] mem_rd_data,
-  output mem_ack
+  output [3:0] mem_ack
 );
 
   wire [WORD_WIDTH-1:0] mem_reg2port [NUM_OF_PORTS-1:0];
@@ -45,7 +45,7 @@ module switch_top # (
         .addr(mem_addr),
         .wr_data(mem_wr_data),
         .rd_data(mem_rd_data),
-        .ack(mem_ack),
+        .ack(mem_ack[i-1]),
         .reg_data2port_out(mem_reg2port[i-1])
       );
 
