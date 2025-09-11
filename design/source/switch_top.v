@@ -5,7 +5,7 @@
 
 module switch_top # (
   parameter NUM_OF_PORTS = 4,
-  parameter FIFO_SIZE = 64,
+  parameter FIFO_SIZE = 256,
   parameter WORD_WIDTH = 8
 )(
   input clk, rst_n,

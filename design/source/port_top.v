@@ -3,7 +3,7 @@
 
 
 module port_top # (
-  parameter FIFO_SIZE = 64,
+  parameter FIFO_SIZE = 256,
   parameter W_WIDTH = 8 //WORD width
 )(
   input clk, rst_n,
