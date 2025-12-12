@@ -21,7 +21,7 @@ module fifo # (
             rd_pos <= 'b0;
             wr_pos <= 'b0;
             full_s <= 'b0;
-            empty_s <= 'b0;
+            empty_s <= 'b1;
             data_out_s <= 'b0;
         end 
         else begin
@@ -29,16 +29,16 @@ module fifo # (
                 ram[wr_pos] <= data_in;
                 empty_s <= 1'b0;
 
-                $display("Debug1");
+                //$display("Debug1");
                 if(wr_pos == FIFO_SIZE - 1) begin
-                    $display("Debug2");
+                    //$display("Debug2");
                     if(rd_pos == 1'b0) begin
                     full_s <= 1'b1;
                     end	
                     wr_pos <= 1'b0;
                 end	
                 else if(((wr_pos + 1'b1) == rd_pos)) begin
-                    $display("Debug3");
+                    //$display("Debug3");
                     full_s <= 1'b1;
                     wr_pos <= wr_pos + 1;
                 end	
@@ -46,7 +46,9 @@ module fifo # (
                     wr_pos <= wr_pos + 1;
                 end	
             end 
+            $display("Read: %b, Empty: %b", rd_en, empty_s);
             if(rd_en && !empty_s) begin
+                $display("Read operation");
                 data_out_s <= ram[rd_pos];
                 ram[rd_pos] <= 'b0;
                 full_s <= 1'b0;
@@ -66,6 +68,7 @@ module fifo # (
                 end	
             end
             else begin
+                $display("No read");
                 data_out_s <= 'b0;
             end
         end 
