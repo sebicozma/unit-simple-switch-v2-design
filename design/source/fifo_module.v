@@ -46,9 +46,9 @@ module fifo # (
                     wr_pos <= wr_pos + 1;
                 end	
             end 
-            $display("Read: %b, Empty: %b", rd_en, empty_s);
+            // $display("Read: %b, Empty: %b", rd_en, empty_s);
             if(rd_en && !empty_s) begin
-                $display("Read operation");
+                // $display("Read operation");
                 data_out_s <= ram[rd_pos];
                 ram[rd_pos] <= 'b0;
                 full_s <= 1'b0;
@@ -68,7 +68,7 @@ module fifo # (
                 end	
             end
             else begin
-                $display("No read");
+                // $display("No read");
                 data_out_s <= 'b0;
             end
         end 
